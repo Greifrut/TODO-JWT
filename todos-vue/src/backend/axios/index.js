@@ -44,7 +44,7 @@ securedAxiosInstance.interceptors.request.use(null, error => {
         location.replace('/')
         return Promise.reject(error)
       })
-  }else {
+  } else {
     return Promise.reject(error)
   }
 })
