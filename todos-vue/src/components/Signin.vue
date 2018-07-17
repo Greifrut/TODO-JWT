@@ -26,6 +26,12 @@
                 error: ''
             }
         },
+        created() {
+            this.checkSignedIn()
+        },
+        updated() {
+            this.checkSignedIn()
+        },
         methods: {
             signin () {
                 this.$http.plain.post('/signin', { email: this.email, password: this.password })
