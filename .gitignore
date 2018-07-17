@@ -24,3 +24,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+.idea/TODO-JWT.iml
+.idea/.generators
+.idea/.rakeTasks
+.idea/workspace.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/dictionaries/artur.xml
+.idea/.rakeTasks
+.idea/.generators
+.idea/TODO-JWT.iml

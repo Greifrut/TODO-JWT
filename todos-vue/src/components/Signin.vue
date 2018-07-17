@@ -1,10 +1,58 @@
 <template>
-
+    <form class="form-signin" @submit.prevent="signin">
+        <div class="alert alert-danger" v-if="error">{{ error }}</div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" v-model="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" v-model="password" class="form-control" id="password">
+        </div>
+        <button type="submit" class="btn btn-primary mb-3" >Sign in</button>
+        <div>
+            <router-link to="/signup">Sign up</router-link>
+        </div>
+    </form>
 </template>
 
 <script>
     export default {
-        name: "Signin"
+        name: "Signin",
+        data () {
+            return {
+                email: '',
+                password: '',
+                error: ''
+            }
+        },
+        methods: {
+            signin () {
+                this.$http.plain.post('/signin', { email: this.email, password: this.password })
+                .then(response => this.signinSuccessful(response))
+                .catch(error => this.signinFailed(error))
+            },
+            signinSuccessful (response) {
+                if(!response.data.csrf) {
+                    this.signinFailed(response)
+                    return
+                }
+                localStorage.csrf = response.data.csrf
+                localStorage.signedIn = true
+                this.error = ''
+                this.$router.replace('/todos')
+            },
+            signinFailed (error) {
+                this.error = (error.response && error.response.data && error.response.data.error)
+                delete localStorage.csrf
+                delete localStorage.signedIn
+            },
+            checkSignedIn () {
+                if(localStorage.signedIn){
+                    this.$router.replace('/todos')
+                }
+            }
+        }
     }
 </script>
 
