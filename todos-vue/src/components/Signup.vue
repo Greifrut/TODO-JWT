@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "Signup",
+  name: 'Signup',
   data () {
     return {
       email: '',
@@ -32,10 +32,10 @@ export default {
     }
   },
   created () {
-      this.checkSignedIn()
+    this.checkSignedIn()
   },
-  updated() {
-      this.checkSignedIn()
+  updated () {
+    this.checkSignedIn()
   },
   methods: {
     signup () {
