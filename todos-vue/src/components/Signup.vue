@@ -27,7 +27,7 @@ export default {
     return {
       email: '',
       password: '',
-      password_confiramtion: '',
+      password_confirmation: '',
       error: ''
     }
   },
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     signup () {
-      this.$http.plain.post('/signup', { email: this.email, password: this.password, password_confiramtion: this.password_confiramtion })
+      this.$http.plain.post('/signup', { email: this.email, password: this.password, password_confirmation: this.password_confirmation })
         .then(response => this.singupSuccessful(response))
         .catch(error => this.signupFailed(error))
     },
